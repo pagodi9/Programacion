@@ -38,7 +38,7 @@ public class ReparacionCoches {
             System.out.println("4-> Agregar una nueva reparacion.");
             System.out.println("5-> Consulta de las reparaciones hechas.");
             System.out.println("6-> Maximas y Minimas.");
-            System.out.println("7-> Mostrar los coches que no tienen ninguna reparación.");
+            System.out.println("7-> Mostrar los coches que no tienen ninguna reparacion.");
             System.out.println("8-> Pedir consulta con alguno de nuestros trabajadores.");
             System.out.println("0-> SALIR.");
             System.out.print("\nSeleccionar la opcion a elegir: ");
@@ -65,9 +65,7 @@ public class ReparacionCoches {
                 default ->
                     System.out.println("Elija entre las opciones: ");
             }
-            for (int i = 0; i <= 8; i++) {
-                System.out.println("");
-            }
+            System.out.println("\n\n");
         }
     }
 
@@ -224,9 +222,6 @@ public class ReparacionCoches {
             System.out.println(reparo);
             System.out.println("=================================================================");
         }
-
-
-
     }
 
     public static void ejercicio_6(){     
@@ -241,15 +236,97 @@ public class ReparacionCoches {
     
     }
     
-    public static void ejercicio_7(){}
-    public static void ejercicio_8(){
+    public static void ejercicio_7(){
+    }
+    
+    public static void ejercicio_8() {
+        System.out.println("======================");
         System.out.println("Nuestros trabajadores:");
+        System.out.println("======================\n");
+
+        imprimirTrabajador("Lucia Rodriguez", "693423428", "4 anhos y 1 mes", "Subdirectora e Ingeniera mecanica");
+        imprimirTrabajador("Rodrigo Castanhuelas", "645645622", "6 meses", "Tecnico Superior en Automocion");
+        imprimirTrabajador("Catalino Sortez", "623425544", "2 anhos y 5 meses", "Grado superior de Mantenimiento Aeromecanico");
+        imprimirTrabajador("Sancho Lorcho", "672342345", "8 anhos y 9 meses", "Director e Ingeniero automotriz");
+
+        int persona;
+        do {
+            System.out.println("\t========");
+            System.out.println("\t**CITA**");
+            System.out.println("\t========\n");
+            System.out.println("1 -> Lucia");
+            System.out.println("2 -> Rodrigo");
+            System.out.println("3 -> Catalino");
+            System.out.println("4 -> Sancho");
+            System.out.println("0 -> SALIR.");
+            System.out.print("\nSeleccionar la opcionn a elegir: ");
+            
+            persona = dato.nextInt();
+            switch (persona) {
+                case 1 -> opcion_1();
+                case 2 -> opcion_2();
+                case 3 -> opcion_3();
+                case 4 -> opcion_4();
+                case 0 -> System.out.println("Saliendo del sistema...");
+                default -> System.out.println("Opcion invalida, intenta de nuevo.");
+            }
+        } while (persona != 0);
+    }
+    public static void imprimirTrabajador(String nombre, String telefono, String años, String especialidad) {
+        System.out.println("Nombre: " + nombre);
+        System.out.println("Telefono: " + telefono);
+        System.out.println("Anhos trabajados: " + años);
+        System.out.println("Especialidad: " + especialidad);
         System.out.println("");
-        System.out.print("Nombres:");
-        System.out.println("Lucia Rodríguez");
-        System.out.println("Nombres:");
-        System.out.println("Nombres:");
-        
+    }
+    public static void opcion_1() {
+        mostrarHorarios("Lucia", "Lunes", "Miercoles", "Viernes", new int[][] {
+            {31, 7, 14, 21, 28},
+            {2, 9, 16, 23, 30},
+            {4, 11, 18, 25}
+        }, "16:00", "22:00");
+    }
+    public static void opcion_2() {
+        mostrarHorarios("Rodrigo", "Martes", "Jueves", "Sabado", new int[][] {
+            {1, 8, 15, 22, 29},
+            {3, 10, 17, 24},
+            {5, 12, 19, 26}
+        }, "16:00", "22:00");
+    }
+    public static void opcion_3() {
+        mostrarHorarios("Catalino", "Lunes", "Miercoles", "Viernes", new int[][] {
+            {31, 7, 14, 21, 28},
+            {2, 9, 16, 23, 30},
+            {4, 11, 18, 25}
+        }, "9:00", "16:00");
+    }
+    public static void opcion_4() {
+        mostrarHorarios("Sancho", "Martes", "Jueves", "Sabado", new int[][] {
+            {1, 8, 15, 22, 29},
+            {3, 10, 17, 24},
+            {5, 12, 19, 26}
+        }, "9:00", "16:00");
+    }
+   
+    public static void mostrarHorarios(String nombre, String dia1, String dia2, String dia3, int[][] mes, String horaInicio, String horaFin) {
+        System.out.println("===================");
+        System.out.println("Cita con " + nombre);
+        System.out.println("===================\n");
+        System.out.println("Meses: Abril");
+        System.out.println("Dias disponibles:\n");
+
+        System.out.println("===========================");
+        System.out.printf("%-10s%-10s%-10s\n", dia1, dia2, dia3);
+        System.out.println("===========================");
+        for (int i = 0; i < mes[0].length; i++) {
+            System.out.printf("%-10d%-10d%-10d\n",
+                (i < mes[0].length ? mes[0][i] : 0),
+                (i < mes[1].length ? mes[1][i] : 0),
+                (i < mes[2].length ? mes[2][i] : 0));
+        }
+        System.out.println("===========================");
+        System.out.println("\nHorarios disponibles desde las " + horaInicio + " hasta las " + horaFin);
+        System.out.println("\nVolviendo al menu principal...\n");
     }
     
     public static void agregarReparacion(int numreparacion, String nomreparacion, int precio, String Nombre, String Apellido, int Telefono) {
