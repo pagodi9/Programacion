@@ -4,6 +4,7 @@
  */
 package reparacioncoches;
 
+
 /**
  *
  * @author PcVIP
@@ -46,16 +47,11 @@ public class Coche implements Comparable<Coche> {
     public int getNumreparaciones() {
         return numreparaciones;
     }
-
+    
     @Override
-    public int compareTo(Coche o) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public int compareTo(Coche otroCoche) {
+        return this.marca.compareToIgnoreCase(otroCoche.getMarca());
     }
-
-    public int compareTo(String anotherString) {
-        return marca.compareTo(anotherString);
-    }
-
 
     @Override
     public String toString() {

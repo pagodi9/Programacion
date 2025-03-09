@@ -21,7 +21,7 @@ public class Reparacion {
     }
 
     public Reparacion(int numreparacion, String nomreparacion, int Precio, String Nombre, String Apellido, int Telefono) {
-        this.numreparacion = numreparacion;
+        this.numreparacion = numreparacion++;
         this.nomreparacion = nomreparacion;
         this.Precio = Precio;
         this.Nombre = Nombre;
@@ -59,6 +59,6 @@ public class Reparacion {
     @Override
     public String toString() {
         return "Num. Reparacion: " + numreparacion + "\tReparacion: " + nomreparacion + "   Precio: " + Precio
-                + "\nDatos de la persona:\nNombre: " + Nombre + " Apellido: " + Apellido + " Telefono: " + Telefono;
+                + "\n-----------------------------------------------------------------\nDatos de la persona:\nNombre: " + Nombre + " " + Apellido + "\nTelefono: " + Telefono;
     }
 }

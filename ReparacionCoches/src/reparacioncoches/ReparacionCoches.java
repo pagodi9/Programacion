@@ -22,6 +22,7 @@ public class ReparacionCoches {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        listacoche();
         menu();
     }
 
@@ -31,9 +32,14 @@ public class ReparacionCoches {
             System.out.println("\t========");
             System.out.println("\t**MENU**");
             System.out.println("\t========\n");
-            System.out.println("1-> Datos del coche");
-            System.out.println("2-> Lista de los coches registrados");
-            System.out.println("3-> Consulta de las reparaciones hechas");
+            System.out.println("1-> Alta del coche.");
+            System.out.println("2-> Lista de los coches registrados.");
+            System.out.println("3-> Lista de reparaciones disponibles.");
+            System.out.println("4-> Agregar una nueva reparacion.");
+            System.out.println("5-> Consulta de las reparaciones hechas.");
+            System.out.println("6-> Maximas y Minimas.");
+            System.out.println("7-> Mostrar los coches que no tienen ninguna reparación.");
+            System.out.println("8-> Pedir consulta con alguno de nuestros trabajadores.");
             System.out.println("0-> SALIR.");
             System.out.print("\nSeleccionar la opcion a elegir: ");
             opcion = dato.nextInt();
@@ -44,14 +50,36 @@ public class ReparacionCoches {
                     ejercicio_2();
                 case 3 ->
                     ejercicio_3();
+                case 4 ->
+                    ejercicio_4();
+                case 5 ->
+                    ejercicio_5();
+                case 6 ->
+                    ejercicio_6();
+                case 7 ->
+                    ejercicio_7();
+                case 8 ->
+                    ejercicio_8();
                 case 0 -> {
                 }
                 default ->
                     System.out.println("Elija entre las opciones: ");
             }
-            for (int i = 0; i <= 3; i++) {
+            for (int i = 0; i <= 8; i++) {
                 System.out.println("");
             }
+        }
+    }
+
+    public static void listacoche() {
+        if (datocoche.isEmpty()) {
+            agregarCoche("BMW", "E30", "2345TRC", 2006, 0);
+            agregarCoche("FIAT", "500", "9382GTX", 2003, 1);
+            agregarCoche("NISSAN", "GT-R", "2394SPT", 2010, 2);
+            agregarCoche("LEXUS", "LS", "3234LKJ", 2018, 4);
+            agregarCoche("CITROEN", "2CV", "3456SCD", 2008, 1);
+            agregarCoche("BMW", "M3 E92", "8274JLM", 1998, 0);
+            agregarCoche("NISSAN", "370Z", "5912KPQ", 1996, 0);
         }
     }
 
@@ -61,51 +89,38 @@ public class ReparacionCoches {
         System.out.println("\t=================");
 
         System.out.println("");
-
-        System.out.println("Ingrese la cantidad de coches a ingresar: ");
+        System.out.println("\nIngrese la cantidad de coches a ingresar: ");
         int num = dato.nextInt();
-
         dato.nextLine();
 
         for (int i = 0; i < num; i++) {
+            System.out.println("\nIngrese la matricula del coche: ");
+            String matricula = dato.nextLine();
+
+            if (existeCoche(matricula)) {
+                System.out.println("Error: Un coche con la matricula " + matricula + " ya esta registrado.");
+                i--;
+                continue;
+            }
             System.out.println("Ingrese la marca del coche: ");
             String marca = dato.nextLine();
 
             System.out.println("Ingrese el modelo: ");
             String modelo = dato.nextLine();
 
-            System.out.println("Ingrese la matrícula: ");
-            String matricula = dato.nextLine();
-
             System.out.println("Ingrese el año de fabricacion: ");
             int añofabricacion = dato.nextInt();
 
             System.out.println("Ingrese la cantidad de reparaciones hechas: ");
             int numreparaciones = dato.nextInt();
-
-            System.out.println("");
+            dato.nextLine();
 
             datocoche.add(new Coche(marca, modelo, matricula, añofabricacion, numreparaciones));
         }
 
-        System.out.println("\nDatos del coche: ");
-        for (Coche coche : datocoche) {
-            System.out.println("============================================");
-            System.out.println(coche);
-            System.out.println("============================================");
-        }
-
     }
-             
-    public static void ejercicio_2() {
-        agregarCoche("BMW", "E30", "2345TRC", 2006, 0);
-        agregarCoche("FIAT", "500", "9382GTX", 2003, 1);
-        agregarCoche("NISSAN", "GT-R", "2394SPT", 2010, 2);
-        agregarCoche("LEXUS", "LS", "3234LKJ", 2018, 4);
-        agregarCoche("CITROEN", "2CV", "3456SCD", 2008, 1);
-        agregarCoche("BMW", "M3 E92", "8274JLM", 1998, 0);
-        agregarCoche("NISSAN", "370Z", "5912KPQ", 1996, 0);
 
+    public static void ejercicio_2() {
         System.out.println("\t=================");
         System.out.println("\t*Lista de coches*");
         System.out.println("\t=================");
@@ -122,24 +137,136 @@ public class ReparacionCoches {
         System.out.println("\t*Reparaciones*");
         System.out.println("\t==============");
 
-        System.out.println("Listado de las reparaciones disponibles");
+        System.out.println("Listado de las reparaciones con toda la informacion requerida.");
+
+        System.out.println("");
+        System.out.println("Los precios varian dependiendo de las condiciones en las");
+        System.out.println("que se encuentre el coche, marca o modelo.");
+
+        System.out.println("1-> Cambio de aceite y filtros.");
+        System.out.println("2-> Reemplazo de pastillas y discos de freno.");
+        System.out.println("3-> Reemplazo o reparacion del sistema de escape.");
+        System.out.println("4-> Reparacion de suspension (amortiguadores, resortes, etc).");
+        System.out.println("5-> Reemplazo de correas y cadenas de distribucion.");
+        System.out.println("6-> Revision y reparacion del sistema de climatizacion (A/C y calefacción.)");
+        System.out.println("7-> Cambio de bujias y cables de encendido.");
+        System.out.println("8-> Reparacion de sistema de direccion (bomba de direccion asistida, rótulas, etc).");
+        System.out.println("9-> Reemplazo de bateria.");
+        System.out.println("10-> Reparacion de transmision o embrague.");
+        System.out.println("11-> Inspeccion y reparacion de la suspension delantera y trasera.");
+        System.out.println("12-> Reparacion de la caja de cambios (manual o automatica.");
+        System.out.println("13-> Reemplazo de neumaticos y balanceo de ruedas.");
+        System.out.println("14-> Revision y reparacion de sistemas de freno (bomba, liquidos de freno, etc).");
+        System.out.println("15-> Otros (consulta al 98458652)");
+
+        System.out.println("");
+        System.out.println("");
+    }
+
+    public static void ejercicio_4(){
+        System.out.println("");
+        
+        
+        System.out.println("\nIngrese cuantas reparaciones haras: ");
+        int num = dato.nextInt();
+        dato.nextLine();
+        
+        for (int i = 0; i < num; i++) {
+            
+            System.out.println("Numero de la reparacion");
+            int numreparacion = dato.nextInt();
+            dato.nextLine();
+
+            System.out.println("Reparacion:  ");
+            String nomreparacion = dato.nextLine();
+            
+            System.out.println("Precio de la reparacion: ");
+            int precio = dato.nextInt();
+            dato.nextLine();
+            
+            System.out.println("Nombre del propietario: ");
+            String Nombre = dato.nextLine();
+            
+            System.out.println("Apellido del propietario: ");
+            String Apellido = dato.nextLine();
+            
+            System.out.println("Telefono: ");
+            int Telefono = dato.nextInt();
+           
+            dato.nextLine();
+            reparar.add(new Reparacion(numreparacion, nomreparacion, precio, Nombre, Apellido, Telefono));
+        }
+            
+            for (Reparacion reparo : reparar) {
+            System.out.println("=================================================================");
+            System.out.println(reparo);
+            System.out.println("=================================================================");
+        }
+    }
+    
+    public static void ejercicio_5() {
+        System.out.println("Listado de las reparaciones hechas");
         System.out.println(" con toda la información requerida.");
 
-        agregarReparacion(00001, "Motor", 200, "Javier", "Perez", 62232123);
+        System.out.println("");
+        agregarReparacion(8, "Motor", 6500, "Javier", "Perez", 62232123);
+        agregarReparacion(7, "Luces delanteras", 200, "Sara", "Martin", 69385421);
+        agregarReparacion(6, "Revision Frenado", 400, "Javier", "Perez", 62232123);
+        agregarReparacion(5, "Escape", 100, "Rocio", "Cabal", 68752465);
+        agregarReparacion(4, "Embrague", 4000, "Sara", "Martin", 69385421);
+        agregarReparacion(3, "Revision Motor", 400, "Javier", "Perez", 62232123);
+        agregarReparacion(2, "Climatizacion", 250, "Joel", "Pratt", 65245875);
+        agregarReparacion(1, "Rueda", 400, "Javier", "Perez", 62232123);
 
         // Mostrar todos los alumnos del TreeSet
         for (Reparacion reparo : reparar) {
-            System.out.println("============================================");
+            System.out.println("=================================================================");
             System.out.println(reparo);
-            System.out.println("============================================");
+            System.out.println("=================================================================");
         }
+
+
+
+    }
+
+    public static void ejercicio_6(){     
+        System.out.println("\t===========");
+        System.out.println("\t*Max y Min*");
+        System.out.println("\t===========");
+        
+        System.out.println("En este apartado buscaremos en nuestra lista quienes son ");
+        System.out.println("los vehiculos que tienen mayores reparaciones en este taller.");
+       
+        System.out.println("El vehículo que tiene mayores visitas al taller es: " + datocoche.get(4)); 
+    
+    }
+    
+    public static void ejercicio_7(){}
+    public static void ejercicio_8(){
+        System.out.println("Nuestros trabajadores:");
+        System.out.println("");
+        System.out.print("Nombres:");
+        System.out.println("Lucia Rodríguez");
+        System.out.println("Nombres:");
+        System.out.println("Nombres:");
+        
+    }
+    
+    public static void agregarReparacion(int numreparacion, String nomreparacion, int precio, String Nombre, String Apellido, int Telefono) {
+        reparar.add(new Reparacion(numreparacion, nomreparacion, precio, Nombre, Apellido, Telefono));
     }
 
     public static void agregarCoche(String marca, String modelo, String matricula, int añofabricacion, int numreparaciones) {
         datocoche.add(new Coche(marca, modelo, matricula, añofabricacion, numreparaciones));
     }
 
-    public static void agregarReparacion(int numreparacion, String nomreparacion, int precio, String Nombre, String Apellido, int Telefono) {
-        reparar.add(new Reparacion(numreparacion, nomreparacion, precio, Nombre, Apellido, Telefono));
+    public static boolean existeCoche(String matricula) {
+        for (Coche c : datocoche) {
+            if (c.getMatricula().equalsIgnoreCase(matricula)) {
+                return true; // Ya existe un coche con esta matrícula
+            }
+        }
+        return false;
     }
+
 }
