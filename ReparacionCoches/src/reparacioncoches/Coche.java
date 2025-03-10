@@ -32,6 +32,11 @@ public class Coche implements Comparable<Coche> {
         return marca;
     }
 
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+    
+
     public String getModelo() {
         return modelo;
     }
@@ -55,7 +60,7 @@ public class Coche implements Comparable<Coche> {
 
     @Override
     public String toString() {
-        return "Marca: " + marca + "\tModelo: " + modelo + "   Matrícula: " + matricula
-                + "\nAño de fabricacion: " + añofabricacion + "   Num. Reparaciones: " + numreparaciones;
+        return "Marca: " + marca + "\tModelo: " + modelo + "   Matricula: " + matricula
+                + "\nAnho de fabricacion: " + añofabricacion + "   Num. Reparaciones: " + numreparaciones;
     }
 }

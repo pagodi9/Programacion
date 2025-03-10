@@ -37,7 +37,7 @@ public class ReparacionCoches {
             System.out.println("3-> Lista de reparaciones disponibles.");
             System.out.println("4-> Agregar una nueva reparacion.");
             System.out.println("5-> Consulta de las reparaciones hechas.");
-            System.out.println("6-> Maximas y Minimas.");
+            System.out.println("6-> Modificar informacion de algun coche.");
             System.out.println("7-> Mostrar los coches que no tienen ninguna reparacion.");
             System.out.println("8-> Pedir consulta con alguno de nuestros trabajadores.");
             System.out.println("0-> SALIR.");
@@ -224,21 +224,66 @@ public class ReparacionCoches {
         }
     }
 
-    public static void ejercicio_6(){     
-        System.out.println("\t===========");
-        System.out.println("\t*Max y Min*");
-        System.out.println("\t===========");
+    public static void ejercicio_6() {
+        System.out.println("\t================");
+        System.out.println("\t*Modificaciones*");
+        System.out.println("\t================");
+
+        System.out.println("En este apartado modificaremos la informacion");
+        while (true) {
+            System.out.println("Modificar la marca del coche? (si/no): ");
+            String respuesta = dato.nextLine().trim().toLowerCase();
+
+            if (respuesta.equalsIgnoreCase("si") || respuesta.equalsIgnoreCase("sí")) {
+                System.out.println("Ingresar la matricula del coche que quieres modificar : ");
+                String matricula = dato.nextLine().trim();
+
+                boolean encontrado = false;
+                for (Coche coche : datocoche) {
+                    if (coche.getMatricula().equalsIgnoreCase(matricula)) {
+                        System.out.println("Ingresar la nueva marca:");
+                        String newMarca = dato.nextLine().trim();
+                        coche.setMarca(newMarca);
+                        System.out.println("Modificacion hecha.");
+                        encontrado = true;
+                        break;
+                    }
+                }
+                if (!encontrado) {
+                    System.out.println("No se encontró un coche con esa matrícula.");
+                }
+            } else if (respuesta.equals("no")) {
+                System.out.println("Saliendo de modificaciones...");
+                break;
+            } else {
+                System.out.println("Respuesta no válida. Escribe 'si' o 'no'.");
+            }
+        }
+    }
+    
+    public static void ejercicio_7() {
+        System.out.println("=============================");
+        System.out.println("Coches con ninguna reparacion");
+        System.out.println("=============================");
+
+        System.out.println("");
+        boolean sinReparaciones = false;
+
+        System.out.println("Lista de los coches los cuales no tienen ninguna reparacion: ");
         
-        System.out.println("En este apartado buscaremos en nuestra lista quienes son ");
-        System.out.println("los vehiculos que tienen mayores reparaciones en este taller.");
-       
-        System.out.println("El vehículo que tiene mayores visitas al taller es: " + datocoche.get(4)); 
-    
+        for (Coche coche : datocoche) {
+            if(coche.getNumreparaciones()==0){
+                System.out.println("=====================================================");
+                System.out.println(coche);
+                System.out.println("=====================================================");
+                sinReparaciones = true;
+            } 
+        }
+        if(!sinReparaciones){
+            System.out.println("No hay ningun coche que no tenga reparaciones.");
+        }
     }
-    
-    public static void ejercicio_7(){
-    }
-    
+
     public static void ejercicio_8() {
         System.out.println("======================");
         System.out.println("Nuestros trabajadores:");
